@@ -55,6 +55,14 @@ MQTT Library Design
 */
 
 /**
+@ref mqtt_porting Porting
+*/
+
+/**
+@ref mqtt_migration Migration
+*/
+
+/**
 @page mqtt_config Configurations
 @brief Configurations of the MQTT Library.
 <!-- @par configpagestyle allows the @section titles to be styled according to style.css -->
@@ -85,6 +93,10 @@ Configuration settings are C pre-processor constants. They can be set with a \#d
 @section LogInfo
 <br>
 @copydoc LogInfo
+
+@section LogDebug
+<br>
+@copydoc LogDebug
 */
 
 /**
