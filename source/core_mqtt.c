@@ -1983,6 +1983,7 @@ MQTTStatus_t MQTT_Ping( MQTTContext_t * pContext )
     int32_t bytesSent = 0;
     MQTTStatus_t status = MQTTSuccess;
     size_t packetSize = 0U;
+    uint32_t oldLastPacketTimeMs = 0U;
 
     if( pContext == NULL )
     {
@@ -2014,6 +2015,8 @@ MQTTStatus_t MQTT_Ping( MQTTContext_t * pContext )
 
     if( status == MQTTSuccess )
     {
+        oldLastPacketTimeMs = pContext->lastPacketTime;
+
         /* Send the serialized PINGREQ packet to transport layer. */
         bytesSent = sendPacket( pContext,
                                 pContext->networkBuffer.pBuffer,
@@ -2028,6 +2031,7 @@ MQTTStatus_t MQTT_Ping( MQTTContext_t * pContext )
         else
         {
             pContext->pingReqSendTimeMs = pContext->lastPacketTime;
+            pContext->lastPacketTime = oldLastPacketTimeMs;
             pContext->waitingForPingResp = true;
             LogDebug( ( "Sent %ld bytes of PINGREQ packet.",
                         ( long int ) bytesSent ) );

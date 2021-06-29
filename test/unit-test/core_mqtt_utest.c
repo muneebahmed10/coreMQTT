@@ -2391,7 +2391,7 @@ void test_MQTT_Ping_happy_path( void )
     mqttStatus = MQTT_Ping( &context );
     TEST_ASSERT_EQUAL( MQTTSuccess, mqttStatus );
 
-    TEST_ASSERT_EQUAL( context.lastPacketTime, context.pingReqSendTimeMs );
+    TEST_ASSERT_NOT_EQUAL( context.lastPacketTime, context.pingReqSendTimeMs );
     TEST_ASSERT_TRUE( context.waitingForPingResp );
 }
 
